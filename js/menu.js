@@ -85,9 +85,9 @@ var acumulativeOffset = function (element) {
 var navbarItems = document.getElementsByClassName('navbar-item');
 
 var offsetSummary = acumulativeOffset(document.getElementById('summary')) - 50;
-var offsetEducation = acumulativeOffset(document.getElementById('education')) - 50;
 var offsetExperience = acumulativeOffset(document.getElementById('experience')) - 50;
-var offsetAboutMe = acumulativeOffset(document.getElementById('about-me')) - 50;
+var offsetEducation = acumulativeOffset(document.getElementById('education')) - 50;
+var offsetAboutMe = acumulativeOffset(document.getElementById('contact')) - 50;
 
 function deleteActiveClass() {
     for (var i = 0; i < navbarItems.length; i++) {
@@ -110,7 +110,7 @@ function changeMenuStyle(event) {
         
         deleteActiveClass();
         document.querySelector("a[href='#summary']").parentNode.classList.add("active");
-    } else if (pageOffset >= offsetSummary && pageOffset < offsetEducation) {
+    } else if (pageOffset >= offsetSummary && pageOffset < offsetExperience) {
         if (!previous || previous !== 2) {
             previous = 2;
         } else if (previous === 2){
@@ -118,8 +118,8 @@ function changeMenuStyle(event) {
         }
         
         deleteActiveClass();
-        document.querySelector("a[href$='education']").parentNode.classList.add("active");
-    } else if (pageOffset >= offsetEducation &&  pageOffset < offsetExperience) {
+        document.querySelector("a[href$='experience']").parentNode.classList.add("active");
+    } else if (pageOffset >= offsetExperience &&  pageOffset < offsetEducation) {
         if (!previous || previous !== 3) {
             previous = 3;
         } else if (previous === 3){
@@ -127,9 +127,9 @@ function changeMenuStyle(event) {
         }
 
         deleteActiveClass();
-        document.querySelector("a[href$='experience']").parentNode.classList.add("active");
+        document.querySelector("a[href$='education']").parentNode.classList.add("active");
     }
-    else if (pageOffset >= offsetExperience &&  pageOffset < offsetAboutMe) {
+    else if (pageOffset >= offsetEducation &&  pageOffset < offsetAboutMe) {
         if (!previous || previous !== 4) {
             previous = 4;
         } else if (previous === 4){
@@ -137,7 +137,7 @@ function changeMenuStyle(event) {
         }
 
         deleteActiveClass();   // The active class is changed only if the mouse is in a different block
-        document.querySelector("a[href$='about-me']").parentNode.classList.add("active");
+        document.querySelector("a[href$='contact']").parentNode.classList.add("active");
     }    
 } 
 
