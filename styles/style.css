@@ -1,0 +1,479 @@
+/*@import url('/css/typography.css');*/
+/*@import url('styles/grid.css');
+@import url('/styles/font-awesome.css');
+@import url('/styles/number-polyfill.css');
+@import url('https://fonts.googleapis.com/css?family=Roboto'); */
+
+* {
+	font-family: 'Lato', garamond, verdana, 'Roboto', sans-serif;
+	color: #e7f7f7;
+	font-size: 22px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+main {
+	display: block; /* For IE 11 */
+}
+
+@font-face {
+	font-family: batman;
+    src: url(../fonts/FFF_Tusj.ttf);
+	/* src: url(../fonts/batmfo__.ttf); */ /* Not working in IE 11  */
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	/*--main-text-color: #F7F7F7;          IE 11 has no support for CSS variables. */
+	/*--secondary-text-color: #A4A4A4; */
+}
+
+/* Fix for the floating elements (in the about-me section) */
+.clearfix:after {
+	content: " "; /* Older browser do not support empty content */
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.second-container {
+	margin-left: 60px;
+	margin-right: 60px;
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+h1 {
+	text-align: center;
+}
+
+/******************* Navigation bar or menu ********************/
+.navbar {
+	background-color: #f7f7f7;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 1;
+	animation: flipIn 1s forwards;
+	animation-delay: 0.5s;
+}
+
+.navbar > .navbar-list {
+	list-style-type: none;
+	margin: 0;
+	float: right;
+	font-size: 0;
+}
+
+.navbar > .navbar-list > .navbar-item {
+	display: inline-block;
+	font-size: 20px;
+}
+
+.navbar > .navbar-list > .navbar-item a {
+	padding: 20px;
+	text-decoration: none;
+	color: rgba(0, 0, 0, 0.9);
+	display: inline-block;
+	transition: all 0.5s linear;
+}
+
+.navbar > .navbar-list > .navbar-item.active a {
+	color: #f7f7f7;
+	background-color: #a4a4a4;
+}
+
+.navbar > .navbar-list > .navbar-item a:hover {
+	color: #f7f7f7;
+	background-color: #a4a4a4;
+}
+
+/******************** My photo *********************/
+header > .title-img {
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url(../images/photo.jpg); /* Photo compressed with tinybmp.com */
+	height: 100vh;
+	transition: background-size 0.5s;
+	filter: grayscale(100%);
+}
+
+.header > .title-img:hover {
+	background-size: 85% 85%;
+}
+
+.header > .title {
+	position: absolute;
+	left: 0;
+	top: 65%;
+	width: 100%;
+	text-align: center;
+	/*font-size: 20px;*/ /* Not needed in Chrome */
+	color: black;
+	font-family: batman;
+	border: 6px solid darkgreen;
+	z-index: 1;
+	animation: titleAnimation 4s forwards;
+	animation-delay: 0.8s;
+	visibility: hidden;
+    background-color: none;
+}
+
+.header > .title-cite > .catching-quote {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 100%;
+	text-align: center;
+	font-size: 45px;
+	color: darkgreen;
+	font-family: batman;
+	opacity: 0;
+	animation: subtitleAnimation 4s forwards;
+	animation-delay: 0s;
+}
+
+@keyframes titleAnimation {
+	0% {
+        background-color: white;
+		font-size: 200px;
+	}
+	25% {
+		font-size: 150px;
+	}
+	50% {
+		font-size: 100px;
+	}
+	75% {
+        background-color: white;
+		font-size: 30px;
+	}
+	100% {
+        font-size: 100px;
+		visibility: visible;
+	}
+}
+
+@keyframes subtitleAnimation {
+	0% {
+		color: white;
+		filter: blur(20px);
+	}
+	50% {
+		color: black;
+	}
+	/*90% {
+        color: white;
+        opacity: 1;
+    } */
+	100% {
+		color: darkgreen;
+		opacity: 1;
+		filter: blur(0);
+	}
+}
+
+/********************************************************/
+.container {
+	background-color: #005;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 80%;
+    margin: auto;
+	border-radius: 20px;
+}
+
+.second-container {
+	border-radius: 10px;
+}
+
+#summary {
+	background-color: #999999;
+	margin-right: 60px;
+	margin-left: 60px;
+	padding-bottom: 10px;
+	padding-top: 6px;
+	padding-left: 15px;
+	border-radius: 10px;
+}
+
+#summary p::first-letter {
+	font-size: 150%;
+	color: black;
+}
+
+.container .title {
+	text-align: center;
+	text-transform: uppercase;
+	color: black;
+	background-color: lightblue;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-radius: 10px;
+}
+
+/************************ Education and Experience sections ****************************/
+#education,
+#experience {
+	display: flex;
+	flex-flow: column wrap;
+}
+
+.education-title,
+.experience-title {
+	color: darkblue;
+	padding-left: 15px;
+}
+
+#education article {
+	/* Not "article, #education" */
+	display: flex;
+	flex-flow: column wrap;
+}
+
+#education article:first-child {
+	border-radius: 10px 10px 0 0; /* round only the top corners */
+}
+
+#education article:last-child {
+	padding-bottom: 60px;
+	border-radius: 0 0 10px 10px; /* round only the bottom corners */
+}
+
+#education article:nth-child(even) {
+	background-color: #999999;
+}
+
+#education article:nth-child(odd) {
+	background-color: grey;
+}
+
+#education article li {
+	list-style-type: square;
+	list-style-position: outside;
+}
+
+#experience article {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+/* #experience, #education article:nth-child(even) {  This line does not work */
+#experience article:nth-child(even) {
+	background-color: #999999;
+}
+
+#experience article:nth-child(odd) {
+	background-color: grey;
+}
+
+#experience article:first-child {
+	border-radius: 10px 10px 0 0; /* round only the top corners */
+}
+
+#experience article:last-child {
+	padding-bottom: 60px;
+	border-radius: 0 0 10px 10px; /* round only the bottom corners */
+}
+
+#experience article > .experience-title {
+	flex: 1;
+}
+
+#experience article > .experience-content {
+	flex: 3;
+	text-align: left; /* It's the default value */
+}
+
+#education article > .education-title {
+	flex: 1;
+}
+
+#education article > .education-content {
+	flex: 3;
+	text-align: left; /* It's the default value */
+}
+
+/************************ About-me section ****************************/
+#reach-me-subsection,
+#about-me {
+	background-color: #999999;
+}
+
+.container .about-me-container {
+	padding-top: 50px;
+	padding-bottom: 5px;
+	border-radius: 10px 10px 0 0;
+}
+
+.about-me-container > .about-me-video {
+	float: left;
+	padding-left: 10%;  /* Valores relativos */
+	padding-top: 40px;
+    max-width: 50%;
+}
+
+.about-me-video video {
+    width: 100%;
+    height: 80%;
+}
+  
+.about-me-container > .about-me-info {
+	float: right;
+	padding-right: 10%;
+	padding-top: 40px;
+	max-width: 50%;
+	color: black;
+	/*margin-right: 300px; */
+}
+
+/***************** Reach-me subsection **************/
+#reach-me-subsection {
+	border-radius: 0 0 10px 10px;
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
+
+#reach-me-subsection > p {
+	color: black;
+	text-align: center;
+	font-size: 26x;
+	font-weight: bold;
+}
+
+.container .reach-me-container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+.reach-me-container > #email-icon {
+	cursor: pointer;
+}
+
+.reach-me-container > #linkedin-icon {
+	cursor: pointer;
+}
+
+.reach-me-container > #github-icon {
+	cursor: pointer;
+}
+
+/* .reach-me-container .icon:hover {    /* It won't work with ">" */
+#email-icon:hover {
+	transition: 0.9s;
+	transform: scale(1.5) rotateY(180deg);
+}
+
+#linkedin-icon:hover {
+	transform: scale(1.5);
+	transition: 0.9s;
+}
+
+#github-icon:hover {
+	transition: 0.9s;
+	transform: scale(1.5) rotateY(180deg);
+}
+
+/*************************************************/
+footer {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+	text-align: center;
+	color: white;
+	font-size: smaller;
+	background-color: #05f;
+}
+
+/******************* For the contact page **********************/
+
+.contact-container {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+#googleMap {
+	height: 400px;
+}
+
+.form {
+	padding: 20px 20px;
+}
+
+.form .form-column {
+	display: flex;
+	flex-flow: column nowrap;
+	padding: 5px;
+}
+
+.form .form-column-how {
+	/*    display: flex;
+    flex-flow: column wrap; */
+	padding: 15px;
+}
+
+input {
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+input[type=button],
+input[type=submit],
+button {
+	background-color: #4caf50;
+	width: 180px;
+	border: none;
+	color: white;
+	padding: 15px 40px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.how > label {
+	height: 30px;
+	width: 10px;
+	background-color: #b09090;
+	border: 1px solid grey;
+	display: inline-block;
+}
+
+button[disabled] {
+	opacity: 0.5;
+}
+
+.text-area-class {
+	margin-left: 250px;
+}
+
+@keyframes flipIn {
+	0% {
+		transform: rotateX(90deg);
+	}
+	100% {
+		transform: rotateX(0deg);
+	}
+}
+
+/* Classes to toggle the text area */
+
+.show-textarea {
+	display: block;
+}
+
+.hide-textarea {
+	display: none;
+}
+
+/******************* For the Tasks page **********************/
