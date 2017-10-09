@@ -99,6 +99,7 @@ function changeMenuStyle(event) {
 var emailIcon = document.getElementById('email-icon');
 var linkedinIcon = document.getElementById('linkedin-icon');
 var githubIcon = document.getElementById('github-icon');
+var pdfConversionLink = document.getElementById('convert-to-pdf');
 
 $(emailIcon).on('mouseenter', function() {
 	$('#email-name').text('jose.alonso.programmer@gmail.com');
@@ -106,7 +107,6 @@ $(emailIcon).on('mouseenter', function() {
 $(emailIcon).on('mouseleave', function() {
 	$('#email-name').text('');
 });
-
 
 emailIcon.addEventListener('click', function() {
 	window.open('mailto:jose.alonso.programmer@gmail.com', '_blank');
@@ -117,3 +117,54 @@ linkedinIcon.addEventListener('click', function() {
 githubIcon.addEventListener('click', function() {
 	window.open('https://github.com/josealonso', '_blank');
 });
+
+/*************************** Not used ***************************/
+/******************* Generate the pdf document ******************/
+function pruebaDivAPdf() {
+	var pdfDocument = new jsPDF('p', 'pt', 'letter');
+	var source1 = document.getElementById('summary');
+	var source2 = document.getElementsByClassName('experience0-article')[0];
+	// source = document.getElementsByTagName('body')[0];
+	console.log('DIV:', source);
+	specialElementHandlers = {
+		'#bypassme': function(element, renderer) {
+			return true;
+		}
+	};
+	margins = {
+		top: 80,
+		bottom: 60,
+		left: 40,
+		width: 522
+	};
+
+	var experienceSection =
+		'Master student Jun 2017 – Jan 2018\nWeb Startup Engineering Bootcamp in KeepCoding.\nEmbedded Software Engineer Jan 2015 – Oct 2016 \nEmbedded Software Engineer for automotive systems. C Programmer and System Validation Engineer.';
+
+	pdfDocument.text(20, 20, 'Primera página');
+	pdfDocument.text(20, 30, experienceSection);
+
+	pdfDocument.addPage();
+	var source = [ source1 ];
+	pdfDocument.setTextColor(0, 0, 220);
+	for (var i in source) {
+		console.log('    Elemento:', source[i]);
+		pdfDocument.fromHTML(
+			// [source, source2],
+			source[i],
+			margins.left, // x coord
+			margins.top,
+			{
+				// y coord
+				width: margins.width,
+				elementHandlers: specialElementHandlers
+			},
+			// function(dispose) { pdfDocument.save('CV de José Ramón Alonso Tapia.pdf'); },
+			margins
+		);
+	}
+	pdfDocument.save('CV de José Ramón Alonso Tapia.pdf');
+}
+
+// pdfConversionLink.addEventListener('click', pruebaDivAPdf);
+
